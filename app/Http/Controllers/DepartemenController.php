@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Departemen;
 
+use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DepartemenExport;
+
 class DepartemenController extends Controller
 {
     public function index() {
@@ -40,6 +44,16 @@ class DepartemenController extends Controller
         $departemen = Departemen::findOrFail($id);
         $departemen->delete();
         return redirect('departemen');
+    }
+
+    public function createPdf() {
+        $departemens = Departemen::all()->sortBy('nama');
+        $file = PDF::loadView('departemen.create_pdf', ['departemens' => $departemens]);
+        return $file->download('Data Departemen.pdf');
+    }
+
+    public function exportExcel() {
+        return Excel::download(new DepartemenExport, 'Data Departemen.xlsx');
     }
     
 }

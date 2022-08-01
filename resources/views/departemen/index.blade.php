@@ -1,8 +1,8 @@
 @extends('layout.master')
 @section('content')
     <a href="{{route('departemen.create')}}" class="btn btn-warning">Tambah Data Departemen</a>
-    <a href="#" class="btn btn-outline-danger">PDF</a>
-    <a href="#" class="btn btn-outline-success">Excel</a>
+    <a href="{{route('departemen.create_pdf')}}" class="btn btn-outline-danger">PDF</a>
+    <a href="{{route('departemen.export_excel')}}" class="btn btn-outline-success">Excel</a>
     <table class="table table-hover">
         <thead>
             <tr>

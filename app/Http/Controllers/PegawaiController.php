@@ -7,10 +7,14 @@ use App\User;
 use App\Departemen;
 use App\Pegawai;
 
+use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PegawaiExport;
+
 class PegawaiController extends Controller
 {
     public function index() {
-        $pegawais = Pegawai::all()->sortBy('departemen');
+        $pegawais = Pegawai::all()->sortBy('departemen_id');
         return view('pegawai.index', compact('pegawais'));
     }
 
@@ -49,5 +53,15 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::findOrFail($id);
         $pegawai->delete();
         return redirect('pegawai');
+    }
+
+    public function createPdf() {
+        $pegawais = Pegawai::all()->sortBy('departemen_id');
+        $file = PDF::loadView('pegawai.create_pdf', ['pegawais' => $pegawais]);
+        return $file->download('Data Pegawai.pdf');
+    }
+
+    public function exportExcel() {
+        return Excel::download(new PegawaiExport, 'Data Pegawai.xlsx');
     }
 }

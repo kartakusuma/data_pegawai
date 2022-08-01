@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
+use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UserExport;
+
 class UserController extends Controller
 {
     public function index() {
@@ -22,7 +26,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->level = $request->level;
         $user->password = $request->password;
-        return redirect('user');
+        return redirect('pegawai/create');
     }
 
     public function edit($id) {
@@ -43,5 +47,15 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect('user');
+    }
+
+    public function createPdf() {
+        $users = User::all();
+        $file = PDF::loadView('user.create_pdf', ['users' => $users]);
+        return $file->download('Data User.pdf');
+    }
+
+    public function exportExcel() {
+        return Excel::download(new UserExport, 'Data User.xlsx');
     }
 }
