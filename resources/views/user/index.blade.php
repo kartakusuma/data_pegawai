@@ -9,7 +9,8 @@
                 <th scope="col">No</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Email</th>
-                <th scope="col">Aksi</th>
+                <th scope="col">Ubah</th>
+                <th scope="col">Hapus</th>
             </tr>
         </thead>
         <tbody>
@@ -22,8 +23,12 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>
-                        <a href="{{route('user.edit', $user->id)}}" class="btn btn-warning">Edit</a>
-                        <a href="{{route('user.destroy', $user->id)}}" class="btn btn-danger">Hapus</a>
+                        <a href="{{route('user.edit', $user->id)}}" class="btn btn-warning">Ubah</a>
+                        <form action="{{ route('user.destroy', $user->id) }}" method="post">
+                            @csrf
+                            <button class="btn btn-warning btn-sm" 
+                            onclick="return confirm('Anda yakin ingin menghapus data ini?')">Hapus</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

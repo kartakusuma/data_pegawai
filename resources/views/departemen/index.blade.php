@@ -7,9 +7,9 @@
         <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">ID</th>
                 <th scope="col">Nama</th>
-                <th scope="col">Aksi</th>
+                <th scope="col">Ubah</th>
+                <th scope="col">Hapus</th>
             </tr>
         </thead>
         <tbody>
@@ -21,8 +21,14 @@
                     <td>{{++$i}}</td>
                     <td>{{$departemen->nama}}</td>
                     <td>
-                        <a href="{{route('departemen.edit', $departemen->id)}}" class="btn btn-warning">Edit</a>
-                        <a href="{{route('departemen.destroy', $departemen->id)}}" class="btn btn-danger">Hapus</a>
+                        <a href="{{route('departemen.edit', $departemen->id)}}" class="btn btn-warning">Ubah</a>
+                    </td>
+                    <td>
+                        <form action="{{ route('departemen.destroy', $departemen->id) }}" method="post">
+                            @csrf
+                            <button class="btn btn-danger" 
+                            onclick="return confirm('Anda yakin ingin menghapus data ini?')">Hapus</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

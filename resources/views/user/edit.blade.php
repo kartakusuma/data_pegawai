@@ -1,6 +1,7 @@
 @extends('layout.master')
 @section('content')
     <form action="{{route('user.update', $user->id)}}" method="post">
+        @csrf
         <div class="mb-3">
             <label for="username" class="form-label">Nama User</label>
             <input type="text" class="form-control" id="username" name="name" value="{{$user->name}}">

@@ -2,6 +2,7 @@
 @section('content')
     <h3>Tambah Data Pegawai</h3>
     <form action="{{route('pegawai.store')}}" method="post">
+        @csrf
         <div class="mb-3">
             <label for="nama" class="form-label">Nama Pegawai</label>
             <input type="text" class="form-control" id="nama" placeholder="Nama Pegawai" name="nama">
