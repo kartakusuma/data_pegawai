@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.app')
 @section('content')
     <a href="{{route('user.create')}}" class="btn btn-warning">Tambah User</a>
     <a href="{{route('user.create_pdf')}}" class="btn btn-outline-danger">PDF</a>
@@ -9,6 +9,7 @@
                 <th scope="col">No</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Email</th>
+                <th scope="col">Level</th>
                 <th scope="col">Ubah</th>
                 <th scope="col">Hapus</th>
             </tr>
@@ -22,11 +23,14 @@
                     <td>{{++$i}}</td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
+                    <td>{{$user->level}}</td>
                     <td>
                         <a href="{{route('user.edit', $user->id)}}" class="btn btn-warning">Ubah</a>
+                    </td>
+                    <td>
                         <form action="{{ route('user.destroy', $user->id) }}" method="post">
                             @csrf
-                            <button class="btn btn-warning btn-sm" 
+                            <button class="btn btn-danger" 
                             onclick="return confirm('Anda yakin ingin menghapus data ini?')">Hapus</button>
                         </form>
                     </td>

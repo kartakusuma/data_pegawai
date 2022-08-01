@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.app')
 @section('content')
     <h3>Tambah Data Pegawai</h3>
     <form action="{{route('pegawai.store')}}" method="post">

@@ -19,9 +19,8 @@ class PegawaiController extends Controller
     }
 
     public function create() {
-        $user_id = User::all()->last();
         $departemens = Departemen::all()->sortBy('nama');
-        return view('pegawai.create', compact('user_id', 'departemens'));
+        return view('pegawai.create', compact('departemens'));
     }
 
     public function store(Request $request) {

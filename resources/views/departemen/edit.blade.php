@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.app')
 @section('content')
     <h3>Edit Data Departemen</h3>
     <form action="{{route('departemen.update', $departemen->id)}}" method="post">

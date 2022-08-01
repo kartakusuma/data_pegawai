@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.app')
 @section('content')
     <form action="{{route('user.update', $user->id)}}" method="post">
         @csrf

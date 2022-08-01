@@ -5,6 +5,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
+        @if (Auth::check() && Auth::user())
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
@@ -22,6 +23,7 @@
             <a class="nav-link" href="/about">About</a>
           </li>
         </ul>
+        @endif
       </div>
     </div>
 </nav>

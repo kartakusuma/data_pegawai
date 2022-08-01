@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.app')
 @section('content')
     <div class="text-center">
         <h3>Data Pegawai</h3>
