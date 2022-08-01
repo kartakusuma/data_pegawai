@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 
 use PDF;
@@ -16,19 +17,6 @@ class UserController extends Controller
         return view('user.index', compact('users'));
     }
 
-    public function create() {
-        return view('user.create');
-    }
-
-    public function store(Request $request) {
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->level = $request->level;
-        $user->password = $request->password;
-        return redirect('pegawai/create');
-    }
-
     public function edit($id) {
         $user = User::findOrFail($id);
         return view('user.edit', compact('user'));
@@ -39,7 +27,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->level = $request->level;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         return redirect('user');
     }
 
