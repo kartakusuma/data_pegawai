@@ -57,7 +57,7 @@ class DepartemenController extends Controller
     public function destroy($id) {
         $departemen = Departemen::findOrFail($id);
         $departemen->delete();
-        return redirect('departemen')->with('danger', 'Data berhasil dihapus');
+        return redirect('departemen')->with('danger', 'Data berhasil dihapus!');
     }
 
     public function createPdf() {

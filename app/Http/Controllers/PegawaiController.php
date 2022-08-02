@@ -67,13 +67,13 @@ class PegawaiController extends Controller
         $pegawai->departemen_id = $request->departemen_id;
         $pegawai->alamat = $request->alamat;
         $pegawai->update();
-        return redirect('pegawai')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('pegawai')->with('success', 'Data berhasil diperbarui!');
     }
 
     public function destroy($id) {
         $pegawai = Pegawai::findOrFail($id);
         $pegawai->delete();
-        return redirect('pegawai')->with('danger', 'Data berhasil ditambahkan!');
+        return redirect('pegawai')->with('danger', 'Data berhasil dihapus!');
     }
 
     public function createPdf() {

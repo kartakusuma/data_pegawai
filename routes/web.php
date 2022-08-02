@@ -15,11 +15,11 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
     return view('index');
-})->middleware('verified');
+});
 
 Route::get('/about', function () {
     return view('about');
-})->middleware('verified');
+});
 
 // User
 Route::get('/user', 'UserController@index')->name('user.index')->middleware('verified');

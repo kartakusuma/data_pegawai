@@ -5,6 +5,12 @@
             <div class="container text-center mb-5">
                 <h3>Tambah Data Departemen</h3>
             </div>
+            @if (count($errors) > 0)
+            <div class="alert alert-danger alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Data Departemen telah tersedia</strong>
+            </div>
+            @endif
             <form action="{{route('departemen.store')}}" method="post">
                 @csrf
                 <div class="mb-3">
