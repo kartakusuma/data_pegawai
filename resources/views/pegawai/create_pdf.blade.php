@@ -1,6 +1,6 @@
 @extends('layout.pdf_layout')
 @section('content')
-    <div class="text-center">
+    <div class="container text-center">
         <h3>Data Pegawai</h3>
     </div>
     <table class="table table-hover">

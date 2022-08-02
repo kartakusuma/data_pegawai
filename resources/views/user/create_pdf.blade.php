@@ -1,7 +1,7 @@
 @extends('layout.pdf_layout')
 @section('content')
 <table class="table table-hover">
-    <div class="text-center">
+    <div class="container text-center">
         <h3>Data User</h3>
     </div>
     <thead>
