@@ -8,10 +8,13 @@
   </head>
   <body>
     <div class="container-fluid text-center">
-        <h2 class="text-primary">Aplikasi Data Pegawai by KK</h2>
+      <h2 class="text-dark">Manajemen Pegawai</h2>
     </div>
-    <div class="container m5-4">
+    <div class="container my-4">
       @yield('content')
+    </div>
+    <div class="container-fluid text-center">
+      <h6 class="text-dark">by KK</h6>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

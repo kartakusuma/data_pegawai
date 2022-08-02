@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('content')
-    @if (Auth::check() && Auth::user()->level=='Admin')
-    <a href="/register" class="btn btn-outline-warning">Tambah User</a>
-    @endif
-    <a href="{{route('user.create_pdf')}}" class="btn btn-outline-danger">PDF</a>
-    <a href="{{route('user.export_excel')}}" class="btn btn-outline-success">Excel</a>
+    <div class="py-2">
+        @if (Auth::check() && Auth::user()->level=='Admin')
+        <a href="{{route('user.create_pdf')}}" class="btn btn-outline-danger">PDF</a>
+        <a href="{{route('user.export_excel')}}" class="btn btn-outline-success">Excel</a>
+        @endif
+    </div>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -12,8 +13,10 @@
                 <th scope="col">Nama</th>
                 <th scope="col">Email</th>
                 <th scope="col">Level</th>
+                @if (Auth::check() && Auth::user()->level=='Admin')
                 <th scope="col">Ubah</th>
                 <th scope="col">Hapus</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -26,6 +29,7 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->level}}</td>
+                    @if (Auth::check() && Auth::user()->level=='Admin')
                     <td>
                         <a href="{{route('user.edit', $user->id)}}" class="btn btn-warning">Ubah</a>
                     </td>
@@ -36,6 +40,7 @@
                             onclick="return confirm('Anda yakin ingin menghapus data ini?')">Hapus</button>
                         </form>
                     </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

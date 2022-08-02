@@ -1,12 +1,14 @@
 @extends('layouts.app')
 @section('content')
-    @if (Auth::check())
-    @if (Auth::user()->level=='Admin')
-    <a href="{{route('departemen.create')}}" class="btn btn-outline-warning">Tambah Data Departemen</a>
-    @endif
-    <a href="{{route('departemen.create_pdf')}}" class="btn btn-outline-danger">PDF</a>
-    <a href="{{route('departemen.export_excel')}}" class="btn btn-outline-success">Excel</a>
-    @endif
+    <div class="py-2">
+        @if (Auth::check())
+        @if (Auth::user()->level=='Admin')
+        <a href="{{route('departemen.create')}}" class="btn btn-outline-warning">Tambah Data Departemen</a>
+        @endif
+        <a href="{{route('departemen.create_pdf')}}" class="btn btn-outline-danger">PDF</a>
+        <a href="{{route('departemen.export_excel')}}" class="btn btn-outline-success">Excel</a>
+        @endif
+    </div>
     <table class="table table-hover">
         <thead>
             <tr>

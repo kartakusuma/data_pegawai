@@ -12,6 +12,10 @@ use App\Exports\UserExport;
 
 class UserController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     public function index() {
         $users = User::all();
         return view('user.index', compact('users'));

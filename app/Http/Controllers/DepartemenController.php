@@ -12,6 +12,10 @@ use App\Exports\DepartemenExport;
 
 class DepartemenController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function index() {
         $departemens = Departemen::all()->sortBy('nama');
         return view('departemen.index', compact('departemens'));

@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes(['verify' => true]);
+
 Route::get('/', function () {
     return view('index');
 });
@@ -21,8 +23,8 @@ Route::get('/about', function () {
 
 // User
 Route::get('/user', 'UserController@index')->name('user.index');
-Route::get('/user/create', 'UserController@create')->name('user.create');
-Route::post('/user/store', 'UserController@store')->name('user.store');
+// Route::get('/user/create', 'UserController@create')->name('user.create');
+// Route::post('/user/store', 'UserController@store')->name('user.store');
 Route::get('/user/edit/{id}', 'UserController@edit')->name('user.edit');
 Route::post('/user/update/{id}', 'UserController@update')->name('user.update');
 Route::post('/user/destroy/{id}', 'UserController@destroy')->name('user.destroy');

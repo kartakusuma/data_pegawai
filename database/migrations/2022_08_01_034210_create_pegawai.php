@@ -18,16 +18,10 @@ class CreatePegawai extends Migration
             $table->string('nama');
             $table->string('jenis_kelamin');
             $table->text('alamat');
-            $table->unsignedBigInteger('departemen_id'); 
-            $table->unsignedBigInteger('user_id'); 
+            $table->unsignedBigInteger('departemen_id');
             $table->foreign('departemen_id')
                 ->references('id')
                 ->on('departemen')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamps();

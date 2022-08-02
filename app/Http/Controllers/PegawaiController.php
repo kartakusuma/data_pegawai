@@ -13,6 +13,9 @@ use App\Exports\PegawaiExport;
 
 class PegawaiController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
     public function index() {
         $pegawais = Pegawai::all()->sortBy('departemen_id');
         return view('pegawai.index', compact('pegawais'));
@@ -28,7 +31,7 @@ class PegawaiController extends Controller
         $pegawai->nama = $request->nama;
         $pegawai->jenis_kelamin = $request->jenis_kelamin;
         $pegawai->departemen_id = $request->departemen_id;
-        $pegawai->user_id = $request->user_id;
+        $pegawai->alamat = $request->alamat;
         $pegawai->save();
         return redirect('pegawai');
     }
