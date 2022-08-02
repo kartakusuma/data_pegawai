@@ -14,7 +14,7 @@ use App\Exports\PegawaiExport;
 class PegawaiController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
     public function index() {
         $pegawais = Pegawai::all()->sortBy('departemen_id');
