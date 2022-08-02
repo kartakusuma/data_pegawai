@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @include('pesan.message')
     <div class="py-2">
         @if (Auth::check())
         @if (Auth::user()->level=='Admin')
@@ -13,7 +14,6 @@
         <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">ID</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Jenis Kelamin</th>
                 <th scope="col">Departemen</th>
@@ -30,7 +30,6 @@
             @foreach ($pegawais as $pegawai)
                 <tr>
                     <td>{{++$i}}</td>
-                    <td>{{$pegawai->id}}</td>
                     <td>{{$pegawai->nama}}</td>
                     <td>{{$pegawai->jenis_kelamin}}</td>
                     <td>{{$pegawai->departemen->nama}}</td>

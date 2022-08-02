@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @include('pesan.message')
     <div class="py-2">
         @if (Auth::check())
         @if (Auth::user()->level=='Admin')

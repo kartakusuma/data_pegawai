@@ -7,7 +7,6 @@
         <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">ID</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Departemen</th>
             </tr>
@@ -19,7 +18,6 @@
             @foreach ($pegawais as $pegawai)
                 <tr>
                     <td>{{++$i}}</td>
-                    <td>{{$pegawai->id}}</td>
                     <td>{{$pegawai->nama}}</td>
                     <td>{{$pegawai->departemen->nama}}</td>
                 </tr>

@@ -10,6 +10,8 @@ use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DepartemenExport;
 
+use Session;
+
 class DepartemenController extends Controller
 {
     public function __construct() {
@@ -26,10 +28,14 @@ class DepartemenController extends Controller
     }
 
     public function store(Request $request) {
+        $this->validate($request, [
+            'nama' => ['required', 'unique:departemen'],
+        ]);
+
         $departemen = new Departemen;
         $departemen->nama = $request->nama;
         $departemen->save();
-        return redirect('departemen');
+        return redirect('departemen')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function edit($id) {
@@ -38,16 +44,20 @@ class DepartemenController extends Controller
     }
 
     public function update(Request $request, $id) {
+        $this->validate($request, [
+            'nama' => 'required',
+        ]);
+        
         $departemen = Departemen::findOrFail($id);
         $departemen->nama = $request->nama;
         $departemen->update();
-        return redirect('departemen');
+        return redirect('departemen')->with('success', 'Data berhasil diperbarui!');
     }
 
     public function destroy($id) {
         $departemen = Departemen::findOrFail($id);
         $departemen->delete();
-        return redirect('departemen');
+        return redirect('departemen')->with('danger', 'Data berhasil dihapus');
     }
 
     public function createPdf() {

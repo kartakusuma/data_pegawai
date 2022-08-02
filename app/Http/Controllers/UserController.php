@@ -10,6 +10,8 @@ use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UserExport;
 
+use Session;
+
 class UserController extends Controller
 {
     public function __construct() {
@@ -27,6 +29,11 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id) {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
+
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
