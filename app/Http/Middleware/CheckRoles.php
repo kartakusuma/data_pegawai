@@ -17,7 +17,7 @@ class CheckRoles
     public function handle($request, Closure $next)
     {
         if (!(Auth::check() && Auth::user()->level=='Admin')) {
-            return redirect('/');
+            return redirect()->back();
         }
         return $next($request);
     }

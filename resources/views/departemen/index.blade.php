@@ -11,7 +11,9 @@
         @endif
         <a href="{{route('departemen.create_pdf')}}" class="btn btn-outline-danger">PDF</a>
         <a href="{{route('departemen.export_excel')}}" class="btn btn-outline-success">Excel</a>
+        @if (Auth::user()->level=='Admin')
         <a href="{{route('departemen.trash')}}" class="btn btn-outline-secondary">Tong Sampah</a>
+        @endif
         @endif
     </div>
     @if (count($departemens) > 0)
