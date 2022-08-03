@@ -17,6 +17,7 @@ class CreateDepartemen extends Migration
             $table->bigIncrements('id');
             $table->string('nama')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

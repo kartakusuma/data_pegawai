@@ -39,6 +39,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->level = $request->level;
         $user->password = Hash::make($request->password);
+        $user->update();
         return redirect('user');
     }
 
@@ -56,5 +57,22 @@ class UserController extends Controller
 
     public function exportExcel() {
         return Excel::download(new UserExport, 'Data User.xlsx');
+    }
+
+    public function trashIndex() {
+        $users = User::onlyTrashed()->get();
+        return view('user.trash', compact('users'));
+    }
+
+    public function restore($id) {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->restore();
+        return redirect()->route('user.trash');
+    }
+
+    public function permanentDelete($id) {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->forceDelete();
+        return redirect()->route('user.trash');
     }
 }

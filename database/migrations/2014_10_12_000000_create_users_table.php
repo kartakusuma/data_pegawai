@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('level')->default('Pegawai');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

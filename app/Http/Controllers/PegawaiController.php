@@ -85,4 +85,28 @@ class PegawaiController extends Controller
     public function exportExcel() {
         return Excel::download(new PegawaiExport, 'Data Pegawai.xlsx');
     }
+
+    public function trashIndex() {
+        $pegawais = Pegawai::onlyTrashed()->get();
+        //echo $pegawais;
+        return view('pegawai.trash', compact('pegawais'));
+    }
+
+    public function restore($id) {
+        $pegawai = Pegawai::withTrashed()->findOrFail($id);
+        $departemen_id = $pegawai->departemen_id;
+        $departemen = Departemen::withTrashed()->findOrFail($departemen_id);
+        if ($departemen->trashed()) {
+            return redirect()->route('pegawai.trash')->with('warning', 'Data Departemen pegawai tidak ada!');
+        } else {
+            $pegawai->restore();
+            return redirect()->route('pegawai.trash')->with('success', 'Data berhasil direstore!');
+        }
+    }
+
+    public function permanentDelete($id) {
+        $pegawai = Pegawai::withTrashed()->findOrFail($id);
+        $pegawai->forceDelete();
+        return redirect()->route('pegawai.trash')->with('success', 'Data berhasil dihapus secara permanen!');
+    }
 }

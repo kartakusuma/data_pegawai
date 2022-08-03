@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
     @include('pesan.message')
+    <div class="container text-center my-4">
+        <h2>Data Departemen</h2>
+    </div>
     <div class="py-2">
         @if (Auth::check())
         @if (Auth::user()->level=='Admin')
@@ -8,8 +11,10 @@
         @endif
         <a href="{{route('departemen.create_pdf')}}" class="btn btn-outline-danger">PDF</a>
         <a href="{{route('departemen.export_excel')}}" class="btn btn-outline-success">Excel</a>
+        <a href="{{route('departemen.trash')}}" class="btn btn-outline-secondary">Tong Sampah</a>
         @endif
     </div>
+    @if (count($departemens) > 0)
     <table class="table table-hover">
         <thead>
             <tr>
@@ -37,7 +42,7 @@
                         <form action="{{ route('departemen.destroy', $departemen->id) }}" method="post">
                             @csrf
                             <button class="btn btn-danger" 
-                            onclick="return confirm('Anda yakin ingin menghapus data ini?')">Hapus</button>
+                            onclick="return confirm('Anda yakin ingin menghapus data ini ke tong sampah?')">Hapus</button>
                         </form>
                     </td>
                     @endif
@@ -45,4 +50,9 @@
             @endforeach
         </tbody>
     </table>
+    @else
+    <div class="text-center text-secondary">
+        <h2>- Kosong -</h2>
+    </div>
+    @endif
 @endsection
